@@ -33,7 +33,7 @@
 				<tr th:each="curso : ${cursos}">				
 					<td><span th:text="${curso.curso}"></span></td>
 					<td><span th:text="${curso.local}"></span></td>
-					<td><span th:text="${curso.descricao}"></span></td>
+					<td><span th:utext="${#strings.abbreviate(curso.descricao, 80)}"></span></td>
 					<td><span th:text="${curso.professor}"></span></td>
 					<td><span th:text="${curso.dataCadastro}"></span></td>
 					<td><span th:text="${curso.dataInicio}"></span></td>
