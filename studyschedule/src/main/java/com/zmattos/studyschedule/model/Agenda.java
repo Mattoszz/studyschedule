@@ -30,6 +30,7 @@ public class Agenda implements Serializable{
 	
 	@Lob
 	private String descricao;
+	
 	private String professor;
 	
 	@JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "dd/MM/yyyy")
