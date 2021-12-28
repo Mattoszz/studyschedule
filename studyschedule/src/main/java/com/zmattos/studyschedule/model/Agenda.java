@@ -2,12 +2,14 @@ package com.zmattos.studyschedule.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -39,4 +41,6 @@ public class Agenda implements Serializable{
 	private String dataInicio;
 	private String dataFim;
 	
+	@OneToMany
+	private List<Conteudo> conteudo;
 }

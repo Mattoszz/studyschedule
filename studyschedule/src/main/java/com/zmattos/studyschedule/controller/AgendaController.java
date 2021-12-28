@@ -10,13 +10,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import com.zmattos.studyschedule.model.Agenda;
+import com.zmattos.studyschedule.model.Conteudo;
 import com.zmattos.studyschedule.repository.AgendaRepository;
+import com.zmattos.studyschedule.repository.ConteudoRepository;
 
 @Controller		
 public class AgendaController {
 	
 	@Autowired
 	private AgendaRepository agendaRepository;
+	
+	@Autowired
+	private ConteudoRepository conteudoRepository;
 	
 	@GetMapping("/cadastrarCurso")
 	public String form() {
@@ -47,6 +52,14 @@ public class AgendaController {
 		Agenda curso = agendaRepository.findById(id).get();
 		mv.addObject("curso", curso);
 		return mv;
+	}
+	
+	@PostMapping("/{id}")
+	public String detalhesCursoPost(@PathVariable("id") Long id, Conteudo conteudo) {		
+		Agenda curso = agendaRepository.findById(id).get();
+		conteudo.setAgenda(curso);
+		conteudoRepository.save(conteudo);
+		return "redirect:/{id}";
 	}
 	
 }

@@ -9,8 +9,11 @@
         <!--Import materialize.css-->
         <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
 
+		
         <!--Let browser know website is optimized for mobile-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        
+      		
 	</head>
 	
 	<body>
@@ -38,10 +41,21 @@
 				<section>
 	                <p class="card-text" style="margin-top: 40px;"><span th:utext="${curso.descricao}"></span></p>
 	            </section>
+	            
+	            <form method="post">
+	            	<div class="form-group">
+	            		<input type="text" class="form-control" value="" name="conteudoEstudado" placeholder="Conteudo a Estudar *"/>
+	            		<input type="text" class="form-control" value="" name="tempoDeEstudo" placeholder="Tempo de Estudo *"/ >
+	            			            		            		
+	            		<button class="waves-effect waves-light btn" type="submit">Adicionar</button>
+	            	</div>	
+	            </form >
 					
 			</div >
 		
 		<!--JavaScript at end of body for optimized loading-->
         <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+		
+        
 	</body>
 </html >
