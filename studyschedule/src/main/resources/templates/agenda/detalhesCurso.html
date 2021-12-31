@@ -42,6 +42,8 @@
 	                <p class="card-text" style="margin-top: 40px;"><span th:utext="${curso.descricao}"></span></p>
 	            </section>
 	            
+	            <th:block th:include="mensagemValida"></th:block>
+	            
 	            <form method="post">
 	            	<div class="form-group">
 	            		<input type="text" class="form-control" value="" name="conteudoEstudado" placeholder="Conteudo a Estudar *"/>
@@ -52,7 +54,23 @@
 	            </form >
 					
 			</div >
-		
+			
+			<div class="container">
+				<h5>Lista Conteudos</h5>
+			</div>
+			
+			<div class="container" th:each="conteudo : ${conteudos}">
+			
+			<div class="row">
+				<div class="input-field col s6">
+					<p><span th:text="${conteudo.conteudoEstudado}"></span ></p>
+				</div>
+				<div class="input-field col s3">
+					<p><span th:text="${conteudo.tempoDeEstudo}"></span ></p>
+				</div>
+			</div>
+			</div >
+			
 		<!--JavaScript at end of body for optimized loading-->
         <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
 		

@@ -4,8 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotEmpty;
 
 import lombok.Data;
 
@@ -17,7 +17,9 @@ public class Conteudo{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	@NotEmpty
 	private String conteudoEstudado;
+	@NotEmpty
 	private String tempoDeEstudo;
 	
 	@ManyToOne
