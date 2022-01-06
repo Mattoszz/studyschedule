@@ -2,6 +2,7 @@ package com.zmattos.studyschedule.controller;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -35,11 +36,16 @@ public class AgendaController {
 	}
 	
 	@PostMapping("/cadastrarCurso")
-	public String form(Agenda curso) {
+	public String form(@Valid Agenda curso, BindingResult result, RedirectAttributes attributes) {
+		
+		if(result.hasErrors()) {
+			attributes.addFlashAttribute("mensagem", "Verifique os campos!");
+			return "redirect:/cadastrarCurso";
+		}
 		
 		curso.setDataCadastro(LocalDate.now());
 		agendaRepository.save(curso);
-					
+		attributes.addFlashAttribute("mensagem", "Curso Cadastrado com sucesso!");			
 		return "redirect:/cadastrarCurso";
 	}
 	
@@ -63,6 +69,13 @@ public class AgendaController {
 		
 	}
 	
+	@GetMapping("/deletarCurso")
+	public String deletarCurso(Long id) {
+		Agenda curso = agendaRepository.findById(id).get();
+		agendaRepository.delete(curso);
+		return "redirect:/cursos";
+	}
+	
 	@PostMapping("/{id}")
 	public String detalhesCursoPost(@PathVariable("id") Long id, @Valid Conteudo conteudo, BindingResult result, RedirectAttributes attributes) {
 			
@@ -77,4 +90,24 @@ public class AgendaController {
 		return "redirect:/{id}";
 	}
 	
+	@GetMapping("/deletarConteudo")
+	public String deletarConteudo(Long id) {
+		Conteudo conteudo = conteudoRepository.findById(id).get();
+		conteudoRepository.delete(conteudo);
+		
+		Agenda curso = conteudo.getAgenda();
+		long idLong = curso.getId();
+		String idd = "" + idLong;
+		
+		return "redirect:/" + idd;
+	}
+	
 }
+
+
+
+
+
+
+
+

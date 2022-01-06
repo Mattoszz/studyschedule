@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -27,18 +28,25 @@ public class Agenda implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	@NotEmpty
 	private String curso;
+	
+	@NotEmpty
 	private String local;
 	
 	@Lob
 	private String descricao;
 	
+	@NotEmpty
 	private String professor;
 	
 	@JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "dd/MM/yyyy")
 	private LocalDate dataCadastro ;
 	
+	@NotEmpty
 	private String dataInicio;
+	
+	@NotEmpty
 	private String dataFim;
 	
 	@OneToMany
